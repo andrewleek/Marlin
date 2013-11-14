@@ -161,6 +161,18 @@ void FlushSerialRequestResend();
 void ClearToSend();
 
 void get_coordinates();
+#ifdef SCARA
+void calculate_scara_inverse(float cartesian[3]);
+void calculate_scara_forward(float f_delta[3]);
+float calc_bed_scara(float cartesian[3]);
+extern float scara[3];
+extern float axis_scaling[3];  // Build size scaling
+extern float Arm_lookup[X_ARMLOOKUP_LENGTH][Y_ARMLOOKUP_LENGTH];
+extern bool Y_gridcal;
+extern int GCal_X, GCal_Y,  // Position points for GridCal (Default 3) 
+           GPos_X, GPos_Y;  // used to keep calibration positions in loop
+#endif
+
 #ifdef DELTA
 void calculate_delta(float cartesian[3]);
 extern float delta[3];
